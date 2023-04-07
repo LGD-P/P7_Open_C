@@ -1,8 +1,8 @@
 
 
-action_cost = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+action_cost = [1, 2, 3, 4]
 action_profit = [5, 8, 10]
-MAX_COST = 17
+MAX_COST = 8
 
 best_comb = []
 best_profit = 0
@@ -52,3 +52,36 @@ binary_possibilities = creat_binary_possibiliies(action_cost)
 
 action_price_possibilities = creat_action_price_possibilities(
     binary_possibilities)
+
+
+def calculate_possibilities_for_invest_list(max_invest, all_price_possibility):
+    """This function calculation all combination of stock purchase
+    with a max investment.
+
+    Args:
+        max_invest (int): fixed by user
+        all_price_possibility (list): list of all combination without price limit
+
+    Returns:
+        list: list of combination available with a max price
+    """
+    all_possibility = []
+    for possibility in all_price_possibility:
+        wallet = 0
+        investment = []
+        for action in possibility:
+            wallet += action
+            if wallet > max_invest:
+                wallet -= action
+            else:
+                investment.append(action)
+        if investment not in all_possibility:
+            all_possibility.append(investment)
+    return all_possibility
+
+
+possibilities = calculate_possibilities_for_invest_list(
+    MAX_COST, action_price_possibilities)
+
+print(action_price_possibilities)
+print(possibilities)
