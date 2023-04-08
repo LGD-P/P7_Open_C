@@ -1,8 +1,9 @@
 
-
+action_name_list = ["Une", "Deux", "Trois", "Quatre"]
 action_cost = [1, 2, 3, 4]
 action_profit = [5, 8, 10, 4]
 MAX_COST = 8
+
 
 best_comb = []
 best_profit = 0
@@ -32,11 +33,11 @@ def creat_binary_possibilities(action_cost_list):
 binary_possibilities = creat_binary_possibilities(action_cost)
 
 
-def max_buy(binary_p):
+def all_possibilities_for_max_buy(binary_p):
 
     combination_cost = []
     combination_profit = []
-    # cleaned_possibilities = binary_possibilities
+    cleaned_possibilities = []
 
     for combination in binary_p:
         cost_sum = 0
@@ -46,85 +47,44 @@ def max_buy(binary_p):
                 cost_sum += int(action_cost[index[0]])
                 profit_sum += int(action_cost[index[0]]) * \
                     int(action_profit[index[0]]) / 100
-        combination_cost.append(cost_sum)
-        combination_profit.append(profit_sum)
+        if cost_sum < MAX_COST:
+            combination_cost.append(cost_sum)
+            combination_profit.append(profit_sum)
+            cleaned_possibilities.append(combination)
 
-    return combination_cost, combination_profit
-
-
-max_cost_list, max_profit_list = max_buy(binary_possibilities)
-
-
-print(max_cost_list, max_profit_list)
-
-'''
-def creat_action_price_possibilities(binary_availability, action_cost_list, action_profit):
-    """This function uses creat_binary_possibilities() to get back
-    the price of each actions possibilites in list
-
-    Args:
-        binary_availability (list): list generate from creat_binary_possibiliies()
-
-    Returns:
-        list: list of action price
-    """
-
-    price_combination_available = []
-    sum_cost_for_combination = []
-    profit_for_combination = []
-    for comb in binary_availability:
-        price_choice_available = []
-        cost_sum = 0
-        profit_sum = 0
-        for el in comb:
-            if el[1] == "1":
-                cost_sum += int(action_cost_list[el[0]])
-                price_choice_available.append(action_cost_list[el[0]])
-                profit_sum += int(action_cost_list[el[0]]) * \
-                    int(action_profit[el[0]]) / 100
-
-        price_combination_available.append(price_choice_available)
-        sum_cost_for_combination.append(cost_sum)
-        profit_for_combination.append(profit_sum)
-
-    return price_combination_available, sum_cost_for_combination, profit_for_combination
+    return combination_cost, combination_profit, cleaned_possibilities
 
 
-def calculate_possibilities_for_invest_list(max_invest, all_price_possibility):
-    """This function calculation all combination of stock purchase
-    with a max investment.
-
-    Args:
-        max_invest (int): fixed by user
-        all_price_possibility (list): list of all combination without price limit
-
-    Returns:
-        list: list of combination available with a max price
-    """
-    all_possibility = []
-    for possibility in all_price_possibility:
-        wallet = 0
-        investment = []
-        for action in possibility:
-            wallet += action
-            if wallet > max_invest:
-                wallet -= action
-            else:
-                investment.append(action)
-        if investment not in all_possibility:
-            all_possibility.append(investment)
-    return all_possibility
+max_cost_list, max_profit_list, cleaned_possibilities = all_possibilities_for_max_buy(
+    binary_possibilities)
 
 
-binary_possibilities = creat_binary_possibilities(action_cost)
+print(cleaned_possibilities)
+print("*" * 20)
+print(max_cost_list)
+print("*" * 20)
+print(max_profit_list)
 
-action_price_possibilities, max_buy, max_profit = creat_action_price_possibilities(
-    binary_possibilities, action_cost, action_profit)
 
-possibilities = calculate_possibilities_for_invest_list(
-    MAX_COST, action_price_possibilities)
+def determine_best_choice(max_profit):
+    best_index = max_profit.index(max(max_profit))
+    return best_index
 
-print(binary_possibilities)
-print(action_price_possibilities)
-print(max_buy)
-print(max_profit)'''
+
+def determine_best_action_name(index, binary_list, action_name_list):
+    best_action_names = []
+    for action_name in binary_list[index]:
+        best_action_names.append(action_name_list[action_name[0]])
+    return best_action_names
+
+
+best_index = determine_best_choice(max_profit_list)
+
+best_comb = cleaned_possibilities[best_index]
+best_cost = max_cost_list[best_index]
+best_profit = max_profit_list[best_index]
+
+print(
+    " - La meilleur combinaison est : "
+    f"{determine_best_action_name(best_index, cleaned_possibilities, action_name_list)}\n"
+    f" - Pour un coût de {best_cost} \n - Et une retabilité de {best_profit}")
