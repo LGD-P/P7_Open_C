@@ -26,6 +26,38 @@ def creat_binary_possibilities(action_cost_list):
     return bin_combination_available
 
 
+# la contrainte du max dès le brut force à implémenter dans max_buy
+
+
+binary_possibilities = creat_binary_possibilities(action_cost)
+
+
+def max_buy(binary_p):
+
+    combination_cost = []
+    combination_profit = []
+    # cleaned_possibilities = binary_possibilities
+
+    for combination in binary_p:
+        cost_sum = 0
+        profit_sum = 0
+        for index in combination:
+            if index[1] == "1":
+                cost_sum += int(action_cost[index[0]])
+                profit_sum += int(action_cost[index[0]]) * \
+                    int(action_profit[index[0]]) / 100
+        combination_cost.append(cost_sum)
+        combination_profit.append(profit_sum)
+
+    return combination_cost, combination_profit
+
+
+max_cost_list, max_profit_list = max_buy(binary_possibilities)
+
+
+print(max_cost_list, max_profit_list)
+
+'''
 def creat_action_price_possibilities(binary_availability, action_cost_list, action_profit):
     """This function uses creat_binary_possibilities() to get back
     the price of each actions possibilites in list
@@ -95,4 +127,4 @@ possibilities = calculate_possibilities_for_invest_list(
 print(binary_possibilities)
 print(action_price_possibilities)
 print(max_buy)
-print(max_profit)
+print(max_profit)'''
