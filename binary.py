@@ -1,8 +1,13 @@
 
-action_name_list = ["Une", "Deux", "Trois", "Quatre"]
-action_cost = [1, 2, 3, 4]
-action_profit = [5, 8, 10, 4]
-MAX_COST = 8
+action_name_list = ["Action-1", "Action-2", "Action-3", "Action-4", "Action-5",
+                    "Action-6", "Action-7", "Action-8", "Action-9", "Action-10",
+                    "Action-11", "Action-12", "Action-13", "Action-14", "Action-15",
+                    "Action-16", "Action-17", "Action-18 ", "Action-19", "Action-20"]
+action_cost = [20, 30, 50, 70, 60, 80, 22, 26, 48,
+               34, 42, 110, 38, 14, 18, 8, 4, 10, 24, 114]
+action_profit = [5, 10, 15, 20, 17, 25, 7, 11,
+                 13, 27, 17, 9, 23, 1, 3, 8, 12, 14, 21, 18]
+MAX_COST = 500
 
 
 best_comb = []
@@ -59,11 +64,11 @@ max_cost_list, max_profit_list, cleaned_possibilities = all_possibilities_for_ma
     binary_possibilities)
 
 
-print(cleaned_possibilities)
-print("*" * 20)
-print(max_cost_list)
-print("*" * 20)
-print(max_profit_list)
+# print(cleaned_possibilities)
+# print("*" * 20)
+# print(max_cost_list)
+# print("*" * 20)
+# print(max_profit_list)
 
 
 def determine_best_choice(max_profit):
@@ -83,6 +88,7 @@ best_index = determine_best_choice(max_profit_list)
 best_comb = cleaned_possibilities[best_index]
 best_cost = max_cost_list[best_index]
 best_profit = max_profit_list[best_index]
+
 
 print(
     " - La meilleur combinaison est : "
