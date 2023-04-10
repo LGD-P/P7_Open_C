@@ -4,7 +4,7 @@ import pandas as pd
 class Reader:
     @staticmethod
     def csv_reader(csv_file_name):
-        """This function is just a .csv reader
+        """This method is just a .csv reader
         with pandas library
 
         Args:
@@ -18,7 +18,7 @@ class Reader:
 
     @staticmethod
     def creat_list_from_culumn(df, culumn):
-        """This function creat a list of data
+        """This method creat a list of data
         from .csv column choosed by user
 
         Args:
