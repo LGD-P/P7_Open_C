@@ -31,6 +31,6 @@ class Reader:
         for element in df[culumn]:
             try:
                 list_from_culumn.append(int(element.strip("%")))
-            except ValueError:
+            except (AttributeError, ValueError):
                 list_from_culumn.append(element)
         return list_from_culumn
