@@ -10,11 +10,6 @@ action_profit = [5, 10, 15, 20, 17, 25, 7, 11,
 MAX_COST = 500
 
 
-best_comb = []
-best_profit = 0
-best_cost = 0
-
-
 def creat_binary_possibilities(action_cost_list):
     """This function calculate each combinations possibilies in binary,
     then creat a tuple with index and possibilities. Store result in list
@@ -64,13 +59,6 @@ max_cost_list, max_profit_list, cleaned_possibilities = all_possibilities_for_ma
     binary_possibilities)
 
 
-# print(cleaned_possibilities)
-# print("*" * 20)
-# print(max_cost_list)
-# print("*" * 20)
-# print(max_profit_list)
-
-
 def determine_best_choice(max_profit):
     best_index = max_profit.index(max(max_profit))
     return best_index
@@ -93,4 +81,4 @@ best_profit = max_profit_list[best_index]
 print(
     " - La meilleur combinaison est : "
     f"{determine_best_action_name(best_index, cleaned_possibilities, action_name_list)}\n"
-    f" - Pour un coût de {best_cost} \n - Et une retabilité de {best_profit}")
+    f" - Pour un coût de {best_cost} €\n - Et une retabilité de {best_profit} € / 2ans")
