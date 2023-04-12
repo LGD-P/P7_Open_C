@@ -1,81 +1,37 @@
 class BruteForce:
     @staticmethod
-    def creat_binary_possibilities(action_cost_list):
+    def brute_force_to_best_choice(max_investment, action_cost_list, action_profit, action_name_list):
         """This function calculate each combinations possibilies in binary,
-        then creat a tuple with index and possibilities. Store result in list
+        then creat a tuple with index and possibilities. During the loop each combination
+        is compared to precedent and actualised if it's a better choice.
+
         Args:
-            action_cost_list (list): actions price
+            action_cost_list (list): list of action cost
+            action_profit (list): list of action name
+            action_name_list (list): list of action name
+
 
         Returns:
-            list: (action price index, binary avalability)
+            int and list: list of best action choice, int(best profit_sum),
+            int(best_cost_sum)
         """
+
         n_comb = 2 ** (len(action_cost_list))
-        bin_combination_available = []
+        best_cost, best_profit, best_action_list = 0, 0, None
+
         for possibilities in range(1, n_comb):
+            cost_sum, profit_sum, combination = 0, 0, []
             bin_comb = list(enumerate(reversed(bin(possibilities)[2:])))
-            bin_combination_available.append(bin_comb)
-        return bin_combination_available
-
-    @staticmethod
-    def all_possibilities_for_max_buy(binary_p, action_cost, action_profit, MAX_COST):
-        """This method return all data possibility
-        from each data_lists concerned
-
-        Args:
-            binary_p (list): each binary possibilities
-            action_cost (list): action list
-            action_profit (list): profit list
-            MAX_COST (int): Max user investment
-
-        Returns:
-            lists: action cost - profit - binary list compared to investment
-        """
-        combination_cost = []
-        combination_profit = []
-        cleaned_possibilities = []
-
-        for combination in binary_p:
-            cost_sum = 0
-            profit_sum = 0
-            for index in combination:
+            for index in bin_comb:
                 if index[1] == "1":
-                    cost_sum += int(action_cost[index[0]])
-                    profit_sum += int(action_cost[index[0]]) * \
+                    cost_sum += int(action_cost_list[index[0]])
+                    profit_sum += int(action_cost_list[index[0]]) * \
                         int(action_profit[index[0]]) / 100
-            if cost_sum < MAX_COST:
-                combination_cost.append(cost_sum)
-                combination_profit.append(profit_sum)
-                cleaned_possibilities.append(combination)
+                    combination.append(action_name_list[index[0]])
 
-        return combination_cost, combination_profit, cleaned_possibilities
+                if cost_sum < max_investment and profit_sum > best_profit:
+                    best_cost = cost_sum
+                    best_profit = profit_sum
+                    best_action_list = combination
 
-    @staticmethod
-    def determine_best_choice(max_profit):
-        """This method get the best profit index to be used
-        in each list concerned (action name and action cost)
-
-        Args:
-            max_profit (list): to get max()
-
-        Returns:
-            int: best index for each list
-        """
-        best_index = max_profit.index(max(max_profit))
-        return best_index
-
-    @staticmethod
-    def determine_best_action_name(index, binary_list, action_name_list):
-        """This method return best action name investment
-
-        Args:
-            index (int): best index
-            binary_list (list): binary list using max investment
-            action_name_list (list): actions name list
-
-        Returns:
-            list: best action name list to invest with
-        """
-        best_action_names = []
-        for action_name in binary_list[index]:
-            best_action_names.append(action_name_list[action_name[0]])
-        return best_action_names
+        return best_cost, best_profit, best_action_list
