@@ -26,8 +26,7 @@ def main():
     return end_time, best_price, best_profit, action_name_list
 
 
-if __name__ == '__main__':
-    execution_duration, best_price, best_profit, action_name_list = main()
+def display_result(execution_duration, best_price, best_profit, action_name_list):
     c.print("[bold green3] - La meilleur combinaison d'Actions pour un investissement maximum de 500€ est:\
             \n[bold green3]")
     c.print(f"[bold yellow] - {action_name_list}\n[bold yellow]")
@@ -37,3 +36,9 @@ if __name__ == '__main__':
         f"[bold green3] - Et une retabilité de: [bold yellow]{round(best_profit,2)}[bold yellow] € / 2ans\n")
     c.print(
         f"[bold green3] - Le temps d'exécution de l'algoritme est de:[bold yellow] {round(execution_duration,2)} sec.")
+
+
+if __name__ == '__main__':
+    execution_duration, best_price, best_profit, action_name_list = main()
+    display_result(execution_duration, best_price,
+                   best_profit, action_name_list)

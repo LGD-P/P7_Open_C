@@ -40,7 +40,7 @@ def creat_dict_with_yield(defPrice, defPercentage, defAction):
                        'Percentage': dfPercentage[index],
                        'Yield': actionYield[index]})
 
-    sorted_result = sorted(result, key=lambda x: -x['Yield'])
+    sorted_result = sorted(result, key=lambda x: -x['Percentage'])
 
     return sorted_result
 
