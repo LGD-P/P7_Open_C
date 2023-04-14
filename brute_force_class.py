@@ -17,7 +17,7 @@ class BruteForce:
         """
 
         n_comb = 2 ** (len(action_cost_list))
-        best_cost, best_profit, best_action_list = 0, 0, None
+        best_cost, best_profit, best_action_list = 0, 0, []
 
         for possibilities in range(1, n_comb):
             cost_sum, profit_sum, combination = 0, 0, []
