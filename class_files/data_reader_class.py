@@ -59,6 +59,14 @@ class Reader:
 
     @staticmethod
     def display_result(execution_duration, best_price, best_profit, action_name_list):
+        """This method make a friendly display for result
+
+        Args:
+            execution_duration (int or str): int if > 1
+            best_price (int): best amount spent
+            best_profit (int): best profit
+            action_name_list (list): action name list
+        """
         c.print("[bold green3] - La meilleur combinaison d'Actions pour un investissement maximum de 500€ est:\
                 \n[bold green3]")
         c.print(f"[bold yellow] - {action_name_list}\n[bold yellow]")

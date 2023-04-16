@@ -1,10 +1,8 @@
-from rich.console import Console
+
 import time
 
 from class_files.data_reader_class import Reader
 from class_files.brute_force_class import BruteForce
-
-c = Console()
 
 
 def main():

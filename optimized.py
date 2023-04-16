@@ -1,11 +1,7 @@
 
-from rich.console import Console
-
 
 from class_files.data_reader_class import Reader
 from class_files.optimized_class import Optimized
-
-c = Console()
 
 
 def main():
