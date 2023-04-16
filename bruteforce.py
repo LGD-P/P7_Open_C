@@ -10,11 +10,8 @@ c = Console()
 def main():
     INVESTMENT = 500
 
-    df = Reader.csv_reader("actions.csv")
-    dfAction = Reader.creat_list_from_culumn(df, "Actions #")
-    dfPrice = Reader.creat_list_from_culumn(df, 'Coût par action (en euros)')
-    dfPercentage = Reader.creat_list_from_culumn(
-        df, "Bénéfice\xa0(après 2 ans)")
+    dfAction, dfPrice, dfPercentage = Reader.return_price_action_percentage(
+        "actions.csv", "Actions #", "Coût par action (en euros)", "Bénéfice\xa0(après 2 ans)")
 
     start_time = time.time()
 

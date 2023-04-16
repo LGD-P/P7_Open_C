@@ -34,3 +34,22 @@ class Reader:
             except (AttributeError, ValueError):
                 list_from_culumn.append(element)
         return list_from_culumn
+
+    @staticmethod
+    def return_price_action_percentage(csv_file, action_culumn, price_culumn, percentage_culumn):
+        """This methode return all array culumns in variable list
+
+        Args:
+            csv_file (path): path to csv file
+            action_culumn (header): for column action name
+            price_culumn (header): for column price
+            percentage_culumn (header): for %/2years
+
+        Returns:
+            list: one list for each column
+        """
+        df = Reader.csv_reader(csv_file)
+        dfAction = Reader.creat_list_from_culumn(df, action_culumn)
+        dfPrice = Reader.creat_list_from_culumn(df, price_culumn)
+        dfPercentage = Reader.creat_list_from_culumn(df, percentage_culumn)
+        return dfAction, dfPrice, dfPercentage
