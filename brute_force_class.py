@@ -29,9 +29,9 @@ class BruteForce:
                         int(action_profit[index[0]]) / 100
                     combination.append(action_name_list[index[0]])
 
-                if cost_sum < max_investment and profit_sum > best_profit:
-                    best_cost = cost_sum
-                    best_profit = profit_sum
-                    best_action_list = combination
+            if cost_sum < max_investment and profit_sum > best_profit:
+                best_cost = cost_sum
+                best_profit = profit_sum
+                best_action_list = combination
 
         return best_cost, best_profit, best_action_list
