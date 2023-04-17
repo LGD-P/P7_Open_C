@@ -5,6 +5,13 @@ from class_files.optimized_class import Optimized
 
 
 def main():
+    """This main function, from data reader and optimized class
+    will excecute optimized glouton algorithm for  dataset1 and dataset2
+    and max invest of 500€.
+
+    Returns:
+        str: message with result
+    """
     INVESTMENT = 500
     dfAction1, dfPrice1, dfPercentage1 = Reader.return_price_action_percentage(
         "data/dataset1_Python+P7.csv", "name", "price", "profit")

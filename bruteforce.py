@@ -6,6 +6,13 @@ from class_files.brute_force_class import BruteForce
 
 
 def main():
+    """This main function, from data reader and brute force class
+    will excecute brute force algorithm for a dataset of 20 actions 
+    and max invest of 500€.
+
+    Returns:
+        str: message with result
+    """
     INVESTMENT = 500
 
     dfAction, dfPrice, dfPercentage = Reader.return_price_action_percentage(
