@@ -1,7 +1,7 @@
 
 # Projet 7 : Résolvez des problèmes en utilisant des algorithmes en Python 
 
-*Ce projet à pour but la manipulation, la compréhension des mécanismes de constructions des algorithmes ainsi que l'importance de la notion de complexité*
+*Ce projet à pour but la manipulation, la compréhension des mécanismes de constructions des algorithmes ainsi que l'importance de la notion de complexité.*
 
 ## Mise en situation: 
 
@@ -9,7 +9,7 @@
 
   Un Algorithme de **Brute-Force** est demandé sur un jeu de **20 actions**. Puis un algorithme **optimisé** sur 2 jeux de **1000 actions**.
 
-*Un jeu résultats sur les set 1000 actions, est communiqué par l'entreprise, afin d'effectuer une comparaison vis à vis de notre algorithme optimisé*
+*Un jeu de résultats sur les set 1000 actions, est communiqué par l'entreprise, afin d'effectuer une comparaison vis à vis l'algorithme optimisé que nous aurons produit*
     
 ## Mise en place du projet: 
 
