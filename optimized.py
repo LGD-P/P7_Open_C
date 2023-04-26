@@ -13,36 +13,25 @@ def main():
         str: message with result
     """
     INVESTMENT = 500
-    dfAction1, dfPrice1, dfPercentage1 = Reader.return_price_action_percentage(
-        "data/dataset1_Python+P7.csv", "name", "price", "profit")
-    dfAction2, dfPrice2, dfPercentage2 = Reader.return_price_action_percentage(
-        "data/dataset2_Python+P7.csv", "name", "price", "profit")
+    data_set_list = ["data/dataset1_Python+P7.csv",
+                     "data/dataset2_Python+P7.csv"]
 
-    dict_with_yield1 = Optimized.creat_dict_with_yield(
-        dfPrice1, dfPercentage1, dfAction1)
+    index = 0
+    for set in data_set_list:
+        index += 1
+        dfAction, dfPrice, dfPercentage = Reader.return_price_action_percentage(
+            set, "name", "price", "profit")
+        dict_with_yield1 = Optimized.creat_dict_with_yield(
+            dfPrice, dfPercentage, dfAction)
 
-    dict_with_yield2 = Optimized.creat_dict_with_yield(
-        dfPrice2, dfPercentage2, dfAction2)
+        amount_invest, action_list, benefit, execution_time = Optimized.algo_glouton(
+            INVESTMENT, dict_with_yield1)
 
-    amount_invest1, action_list1, benefit1, execution_time1 = Optimized.algo_glouton(
-        INVESTMENT, dict_with_yield1)
-
-    amount_invest2, action_list2, benefit2, execution_time2 = Optimized.algo_glouton(
-        INVESTMENT, dict_with_yield2)
-
-    return amount_invest1, action_list1, benefit1, execution_time1, \
-        amount_invest2, action_list2, benefit2, execution_time2
+        print(f"Pour le dataset{index}:")
+        Reader.display_result(execution_time, amount_invest,
+                              benefit, action_list)
 
 
 if __name__ == "__main__":
 
-    amount_invest1, action_list1, benefit1, execution_time1, \
-        amount_invest2, action_list2, benefit2, execution_time2 = main()
-
-    print("Pour le dataset1:")
-    Reader.display_result(execution_time1, amount_invest1,
-                          benefit1, action_list1)
-    print("")
-    print("Pour le dataset2:")
-    Reader.display_result(execution_time2, amount_invest2,
-                          benefit2, action_list2)
+    main()
