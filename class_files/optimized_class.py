@@ -17,17 +17,14 @@ class Optimized:
         """
         result = []
         actionYield = []
-        index = -1
         for element in range(len(defAction)):
-            index += 1
-
             actionYield.append(
                 round((defPrice[element] * (defPercentage[element] / 100)), 2))
 
-            result.append({'Action': defAction[index],
-                           'Price': defPrice[index],
-                           'Percentage': defPercentage[index],
-                           'Yield': actionYield[index]})
+            result.append({'Action': defAction[element],
+                           'Price': defPrice[element],
+                           'Percentage': defPercentage[element],
+                           'Yield': actionYield[element]})
 
         sorted_result = sorted(result, key=lambda x: -x['Yield'])
 
